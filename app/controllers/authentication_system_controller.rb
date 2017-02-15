@@ -1,6 +1,7 @@
 class AuthenticationSystemController < ApplicationController
 	def index
 		if user_signed_in?
+			@user=current_user
 		else
 			redirect_to '/signin_get'
 		end
@@ -22,6 +23,7 @@ class AuthenticationSystemController < ApplicationController
 			user.email=email
 			user.password=password
 			user.save
+			session[:user_id]=user.id
 			return redirect_to '/'
 		end
 		redirect_to 'signup_get'
