@@ -5,7 +5,7 @@
 <br>
 <% @tweets.each do |tweet| %>
 	<li>
-		<%= tweet.content %>, <%= tweet.user.email %>, <%= tweet.created_at.to_formatted_s(:short) %>
+		<%= tweet.content %>, <%= tweet.user.email %>, <%= tweet.created_at.to_formatted_s(:long) %>
 		<% if tweet.likes.find_by_user_id(current_user.id) %>
 			<%= link_to "DisLike", url_for(controller:'home' ,action:'like', tweet_id: tweet.id) %>
 		<% else %>
