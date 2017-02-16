@@ -1,9 +1,7 @@
 class AuthenticationSystemController < ApplicationController
 	def index
 		if user_signed_in?
-			@tweets=Tweet.all
-			@tweets=@tweets.reverse_order!
-			@user=current_user
+			@tweets=Tweet.includes(:user , :likes).all
 		else
 			redirect_to '/signin_get'
 		end

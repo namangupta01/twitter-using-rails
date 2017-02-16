@@ -1,14 +1,15 @@
 <a href="logout">Logout</a><br>
 
-<%= @user.name %> <br>
-<%= @user.email %><br>
+<%= current_user.name %> <br>
+<%= current_user.email %><br>
 <br>
 <% @tweets.each do |tweet| %>
 	<li>
-		<% if tweet.likes.find_by_user_id(@user.id) %>
-			<%= tweet.content %> <%= link_to "DisLike", url_for(controller:'home' ,action:'like', tweet_id: tweet.id) %>
+		<%= tweet.content %>, <%= tweet.user.email %>, <%= tweet.created_at.to_formatted_s(:short) %>
+		<% if tweet.likes.find_by_user_id(current_user.id) %>
+			<%= link_to "DisLike", url_for(controller:'home' ,action:'like', tweet_id: tweet.id) %>
 		<% else %>
-			<%= tweet.content %> <%= link_to "Like", url_for(controller:'home' , action:'like', tweet_id: tweet.id) %>
+			<%= link_to "Like", url_for(controller:'home' , action:'like', tweet_id: tweet.id) %>
 		<% end %>
 	</li>
 <% end %>
