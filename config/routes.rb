@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'home/tweet'
+
+  get 'home/like'
+
   get '/' => 'authentication_system#index'
 
   get '/signin_get' => 'authentication_system#signin_get'
@@ -11,7 +15,8 @@ Rails.application.routes.draw do
   post '/sign_up' => 'authentication_system#sign_up'
 
   get 'logout' => 'authentication_system#logout'
-  get 'authentication_system/sign_up'
+
+  post '/tweet' => 'home#tweet'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

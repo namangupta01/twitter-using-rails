@@ -1,4 +1,15 @@
 <a href="logout">Logout</a><br>
 
 <%= @user.name %> <br>
-<%= @user.email %>
+<%= @user.email %><br>
+<br>
+<% @user.tweets.each do |tweet| %>
+	<li>
+		<%= tweet.content %>
+	</li>
+<% end %>
+
+<%= form_tag '/tweet' do %>
+	<%= text_area_tag 'content' %>
+	<%= submit_tag 'Tweet' %>
+<% end %>
