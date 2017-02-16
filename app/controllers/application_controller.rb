@@ -12,5 +12,11 @@ class ApplicationController < ActionController::Base
 		User.find_by_id(session[:user_id])
 	end
 
+  def authenticate_user
+    unless user_signed_in?
+      redirect_to '/signin_get'
+    end
+  end
+
 
 end

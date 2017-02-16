@@ -1,5 +1,16 @@
 class HomeController < ApplicationController
-	def tweet
+  before_action :authenticate_user
+
+  
+  def index
+    if user_signed_in?
+      @tweets=Tweet.includes(:user , :likes).all
+    else
+      redirect_to '/signin_get'
+    end
+  end 
+
+  def tweet
 		current_user.tweets.create(content: params[:content])
 		redirect_to '/'
 	end
@@ -14,4 +25,10 @@ class HomeController < ApplicationController
   		end
   		redirect_to '/'
   	end
+
+
+    def find_people
+      @users=User.all
+    end
+
 end
