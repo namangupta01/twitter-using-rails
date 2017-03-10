@@ -2,9 +2,8 @@ class HomeController < ApplicationController
   before_action :authenticate_user
   def index
     if user_signed_in?
+      @tweets = current_user.user_feed
       byebug
-      current_user.user_feed
-      @tweets=Tweet.includes(:user , :likes).all
     else
       redirect_to '/signin_get'
     end

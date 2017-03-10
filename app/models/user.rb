@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 
 
 	def user_feed 
-		byebug
-		followee_list = self.followees.pluck(:id)
-		byebug
+		followee_list = self.followees.pluck(:followee_id) + [self.id]
+		feed_tweets = Tweet.includes(:user , :likes).where("user_id in (?)",followee_list)
+		feed_tweets
 	end
 end
