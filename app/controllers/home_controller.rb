@@ -26,9 +26,15 @@ class HomeController < ApplicationController
       #reject { |user| user.id == current_user.id }
     end
     def follow
-
+      follower_new=FollowMapping.new
+      follower_new.follower_id=params[:follower_id].to_i
+      follower_new.followee_id=current_user.id
+      follower_new.save
+      redirect_to '/find_people'
     end
     def unfollow
-      
+      follower = FollowMapping.all.where(follower_id: params[:follower_id].to_i, followee_id: current_user.id).first
+      follower.destroy
+      redirect_to '/find_people'
     end
 end
