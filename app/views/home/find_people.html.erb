@@ -1,13 +1,13 @@
 <% @users.each do |user| %>
 	<li>
-		<% if current_user.followers.pluck(:follower_id).include?(user.id)
+		<% if current_user.followees.pluck(:followee_id).include?(user.id)
 			 	value = "unfollow"
 			else
 			 	value = "follow" 
 			end 
 		%>
 		<div>
-			Name:<%= user.name %>&nbsp;<%= link_to value, url_for(controller: :home, action: value,follower_id: user.id), method: :get %>
+			Name:<%= user.name %>&nbsp;<%= link_to value, url_for(controller: :home, action: value,followee_id: user.id), method: :get %>
 			<br>
 		Email:<%= user.email %>
 		</div>

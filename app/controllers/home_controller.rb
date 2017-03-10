@@ -2,6 +2,8 @@ class HomeController < ApplicationController
   before_action :authenticate_user
   def index
     if user_signed_in?
+      byebug
+      current_user.user_feed
       @tweets=Tweet.includes(:user , :likes).all
     else
       redirect_to '/signin_get'
@@ -27,13 +29,13 @@ class HomeController < ApplicationController
     end
     def follow
       follower_new=FollowMapping.new
-      follower_new.follower_id=params[:follower_id].to_i
-      follower_new.followee_id=current_user.id
+      follower_new.followee_id=params[:followee_id].to_i
+      follower_new.follower_id=current_user.id
       follower_new.save
       redirect_to '/find_people'
     end
     def unfollow
-      follower = FollowMapping.all.where(follower_id: params[:follower_id].to_i, followee_id: current_user.id).first
+      follower = FollowMapping.all.where(followee_id: params[:followee_id].to_i, follower_id: current_user.id).first
       follower.destroy
       redirect_to '/find_people'
     end
