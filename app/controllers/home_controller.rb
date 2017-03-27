@@ -3,7 +3,11 @@ class HomeController < ApplicationController
   def index
     if user_signed_in?
       @tweets = current_user.user_feed
-      byebug
+      search = params[:search]
+      if search
+        query = "content like '%#{search}%'"
+        @tweets=@tweets.where(query)
+      end
     else
       redirect_to '/signin_get'
     end

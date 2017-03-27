@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get '/' => 'home#index'
 
+  post '/' => 'home#index'
+
   get '/signin_get' => 'authentication_system#signin_get'
 
   get '/signup_get' => 'authentication_system#signup_get'
