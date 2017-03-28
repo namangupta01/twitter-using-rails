@@ -1,22 +1,23 @@
 Rails.application.routes.draw do
+  devise_for :users
+  root 'home#index'
+  # get 'home/tweet'
 
-  get 'home/tweet'
-
-  get 'home/like'
+  # get 'home/like'
 
   get '/' => 'home#index'
 
   post '/' => 'home#index'
 
-  get '/signin_get' => 'authentication_system#signin_get'
+  # get '/signin_get' => 'authentication_system#signin_get'
 
-  get '/signup_get' => 'authentication_system#signup_get'
+  # get '/signup_get' => 'authentication_system#signup_get'
 
-  post '/sign_in' => 'authentication_system#sign_in'
+  # post '/sign_in' => 'authentication_system#sign_in'
 
-  post '/sign_up' => 'authentication_system#sign_up'
+  # post '/sign_up' => 'authentication_system#sign_up'
 
-  get 'logout' => 'authentication_system#logout'
+  # get 'logout' => 'authentication_system#logout'
 
   post '/tweet' => 'home#tweet'
 
