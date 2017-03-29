@@ -8,8 +8,8 @@ class HomeController < ApplicationController
         query = "content like '%#{search}%'"
         @tweets=@tweets.where(query)
       end
-    else
-      redirect_to '/signin_get'
+    #else
+    #  redirect_to '/signin_get'
     end
   end 
   def tweet

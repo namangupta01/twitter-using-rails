@@ -39,9 +39,10 @@ class AuthenticationSystemController < ApplicationController
 	# 		end 
 	# 	end
 
-	# def logout 
-	# 	session[:user_id]=nil
-	# 	redirect_to '/'
-	# end
+	 def logout 
+	 	puts "as"
+	 	session['warden.user.user.key']=nil
+	 	redirect_to '/'
+	 end
 
 end

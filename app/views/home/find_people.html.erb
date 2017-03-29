@@ -7,7 +7,7 @@
 			end 
 		%>
 		<div>
-			Name:<%= user.name %>&nbsp;<%= link_to value, url_for(controller: :home, action: value,followee_id: user.id), method: :get %>
+			Email:<%= user.email %>&nbsp;<%= link_to value, url_for(controller: :home, action: value ,followee_id: user.id), method: :get %>
 			<br>
 		Email:<%= user.email %>
 		</div>

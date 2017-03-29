@@ -1,12 +1,11 @@
 <a href="/logout">Logout</a><br>
 <a href="/find_people">Find People</a><br>
-<%= current_user.name %> <br>
 <%= current_user.email %><br>
 <br>
 <% @tweets.each do |tweet| %>
 	<li>
 		<%= tweet.content %>, <%= tweet.user.email %>, <%= tweet.created_at %>
-		<% if tweet.likes.find_by_user_id(current_user.id) %>
+		<% if tweet.likes.where(current_user.id).first %>
 			<%= link_to "DisLike", url_for(controller:'home' ,action:'like', tweet_id: tweet.id) %>
 		<% else %>
 			<%= link_to "Like", url_for(controller:'home' , action:'like', tweet_id: tweet.id) %>

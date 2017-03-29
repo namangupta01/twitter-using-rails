@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
-  root 'home#index'
-  # get 'home/tweet'
 
-  # get 'home/like'
+ root 'home#index'
+
+
+  devise_for :users
+  get 'home/tweet'
+
+ get 'home/like'
 
   get '/' => 'home#index'
 
@@ -17,7 +20,7 @@ Rails.application.routes.draw do
 
   # post '/sign_up' => 'authentication_system#sign_up'
 
-  # get 'logout' => 'authentication_system#logout'
+  get '/logout' => 'authentication_system#logout'
 
   post '/tweet' => 'home#tweet'
 
